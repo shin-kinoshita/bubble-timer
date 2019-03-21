@@ -1,4 +1,6 @@
 import React from 'react';
+import ButtonSegment from './ButtonSegment';
+import TimeSegment from './TimeSegment';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -8,7 +10,9 @@ export default class Main extends React.Component {
   render() {
     return (
       <div>
-        <p>This is main component</p>
+        <p>Hurry up!!!</p>
+        <TimeSegment/>
+        <ButtonSegment/>
       </div>
     );
   }
