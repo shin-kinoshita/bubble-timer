@@ -6,7 +6,7 @@ import Main from './components/main';
 const appRouting = (
   <HashRouter>
     <Switch>
-      <Route exact path="/" component={Main} />
+      <Route exact path="/" component={Main}/>
     </Switch>
   </HashRouter>
 );

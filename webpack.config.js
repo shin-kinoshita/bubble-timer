@@ -4,57 +4,57 @@
 //                                                                          ==========
 const path = require('path');
 const rendererConfig = {
-	target:'electron-renderer',
-	resolve: {
-		extensions: [".js", ".jsx"],
-	},
-	module: {
-		rules: [
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loader: "babel-loader",
-			},
-			{
-				test: /\.css$/,
-				loaders: [ "style-loader", "css-loader?modules" ],
-			}
-		]
-	},
-	entry: {
-		'renderer/app': './src/renderer/app.jsx'
-	}
+  target: 'electron-renderer',
+  resolve: {
+    extensions: [ ".js", ".jsx" ],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+      },
+      {
+        test: /\.css$/,
+        loaders: [ "style-loader", "css-loader?modules" ],
+      }
+    ]
+  },
+  entry: {
+    'renderer/app': './src/renderer/app.jsx'
+  }
 };
 const mainConfig = {
-	target:'electron-main',
-	entry: {
-		'main/index': './src/main/index'
-	},
-	devtool: 'source-map',
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist/')
-	}
+  target: 'electron-main',
+  entry: {
+    'main/index': './src/main/index'
+  },
+  devtool: 'source-map',
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist/')
+  }
 };
 const commonConfig = {
-	node: {
-		__dirname: false,
-		__filename: false,
-	},
-	devtool: 'source-map',
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist/')
-	}
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
+  devtool: 'source-map',
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist/')
+  }
 };
 
 // ===================================================================================
 //                                                                          Initialize
 //                                                                          ==========
 const concatCommonConfig = (config) => {
-	Object.keys(commonConfig).forEach(key => {
-		config[key] = commonConfig[key];
-	});
+  Object.keys(commonConfig).forEach(key => {
+    config[key] = commonConfig[key];
+  });
 };
 concatCommonConfig(rendererConfig);
 concatCommonConfig(mainConfig);
