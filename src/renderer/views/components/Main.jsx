@@ -1,6 +1,6 @@
 import React from 'react';
-import ButtonSegment from './ButtonSegment';
-import TimeSegment from './TimeSegment';
+import ButtonSegment from '../containers/ButtonSegment';
+import TimeSegment from '../containers/TimeSegment';
 
 export default class Main extends React.Component {
   constructor(props) {
