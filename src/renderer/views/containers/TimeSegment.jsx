@@ -7,10 +7,11 @@ class TimeSegment extends React.Component {
   }
 
   render() {
-    const { mode } = this.props;
+    const { mode, remainedTime } = this.props;
     return (
       <div>
-        <p>current mode is { mode }</p>
+        <p>current mode: { mode }</p>
+        <p>remained time: { remainedTime }</p>
       </div>
     );
   }
@@ -19,6 +20,7 @@ class TimeSegment extends React.Component {
 const mapStateToProps = (state) => {
   return {
     mode: state.mode,
+    remainedTime: state.remainedTime,
   };
 };
 
