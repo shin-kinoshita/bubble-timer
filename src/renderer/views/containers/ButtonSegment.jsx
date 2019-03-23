@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { startTimer, stopTimer } from '../../actions';
+import { resetTimer, startTimer, stopTimer } from '../../actions';
+import { STOP_MODE } from '../../reducers';
 
 class ButtonSegment extends React.Component {
   onPressStart() {
@@ -12,15 +13,28 @@ class ButtonSegment extends React.Component {
     this.props.onPressStop();
   }
 
+  onPressReset() {
+    this.props.onPressReset();
+  }
+
   render() {
+    const { mode } = this.props;
     return (
       <div>
-        <button type="button" onClick={this.onPressStart.bind(this)}>Start</button>
-        <button type="button" onClick={this.onPressStop.bind(this)}>Stop</button>
+        <button type="button"
+                onClick={mode === STOP_MODE ? this.onPressStart.bind(this) : this.onPressStop.bind(this)}
+        >{mode === STOP_MODE ? 'Start' : 'Stop'}</button>
+        <button type="button" onClick={this.onPressReset.bind(this)}>Reset</button>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    mode: state.mode,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -30,7 +44,10 @@ const mapDispatchToProps = (dispatch) => {
     onPressStop: () => {
       dispatch(stopTimer());
     },
+    onPressReset: () => {
+      dispatch(resetTimer());
+    },
   };
 };
 
-export default connect(undefined, mapDispatchToProps)(ButtonSegment);
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonSegment);
