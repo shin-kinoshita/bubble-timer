@@ -6,18 +6,18 @@ const path = require('path');
 const rendererConfig = {
   target: 'electron-renderer',
   resolve: {
-    extensions: [ ".js", ".jsx" ],
+    extensions: [ '.js', '.jsx' ],
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/,
-        loaders: [ "style-loader", "css-loader?modules" ],
+        loaders: [ 'style-loader', 'css-loader?modules' ],
       }
     ]
   },
