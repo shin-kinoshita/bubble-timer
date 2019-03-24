@@ -19,8 +19,6 @@ class ButtonSegment extends React.Component {
 
   render() {
     const { mode } = this.props;
-    console.log('## enter render');
-    console.log(mode);
     return (
       <div>
         <button type="button"
@@ -33,8 +31,6 @@ class ButtonSegment extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('## enter mapStateToProps');
-  console.log(state);
   return {
     mode: state.mode,
   };

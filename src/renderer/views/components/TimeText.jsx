@@ -9,9 +9,11 @@ class TimeText extends React.Component {
     const minutesStr = minutes ? minutes.toString().padStart(2, '0') : '00';
     const secondsStr = seconds ? seconds.toString().padStart(2, '0') : '00';
     return (
-      <span className={style.container}>
-        {minutesStr}:{secondsStr}
-      </span>
+      <div>
+        <input className={style.textbox} type="text" value={minutesStr}/>
+        <span className={style.separator}>:</span>
+        <input className={style.textbox} type="text" value={secondsStr}/>
+      </div>
     );
   }
 }
