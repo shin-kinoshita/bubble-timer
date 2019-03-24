@@ -1,0 +1,13 @@
+.container {
+  display: inline-block;
+  position: relative;
+}
+.timeText {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10%;
+  height: 54px;
+  margin-top: auto;
+  margin-bottom: auto;
+}

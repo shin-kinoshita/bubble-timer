@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { resetTimer, startTimer, stopTimer } from '../../actions';
-import { STOP_MODE } from '../../reducers';
+import { STOP_MODE } from '../../reducers/mode';
 
 class ButtonSegment extends React.Component {
   onPressStart() {
@@ -19,6 +19,8 @@ class ButtonSegment extends React.Component {
 
   render() {
     const { mode } = this.props;
+    console.log('## enter render');
+    console.log(mode);
     return (
       <div>
         <button type="button"
@@ -31,6 +33,8 @@ class ButtonSegment extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('## enter mapStateToProps');
+  console.log(state);
   return {
     mode: state.mode,
   };
