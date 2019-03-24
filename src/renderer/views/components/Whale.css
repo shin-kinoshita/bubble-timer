@@ -1,0 +1,9 @@
+.whale {
+  width: 109px;
+  height: 109px;
+  background-image: url('../../../../assets/img/whale.png');
+  background-color: transparent;
+  background-position: center;
+  background-size: cover;
+  border: none;
+}
