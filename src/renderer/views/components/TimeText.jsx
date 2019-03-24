@@ -15,20 +15,24 @@ class TimeText extends React.Component {
   onMinutesChange(e) {
     const minutes = e.target.value;
     const { seconds } = this.props;
-    if (minutes.length > 2) {
-      return;
-    }
-    this.props.onTimeChange(minutes, seconds);
+    this.onTimeChange(minutes, seconds);
   };
 
   onSecondsChange(e) {
     const { minutes } = this.props;
     const seconds = e.target.value;
-    if (seconds.length > 2) {
+    this.onTimeChange(minutes, seconds);
+  };
+
+  onTimeChange(minutes, seconds) {
+    if (!Number(minutes) || !Number(seconds)) {
       return;
     }
-    this.props.onTimeChange(minutes, seconds);
-  };
+    if (minutes.length > 2 || seconds.length > 2) {
+      return;
+    }
+    this.props.onTimeChange(parseInt(minutes), parseInt(seconds));
+  }
 
   render() {
     const { mode, minutes, seconds } = this.props;
