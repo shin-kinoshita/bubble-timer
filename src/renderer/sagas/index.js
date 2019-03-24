@@ -18,12 +18,17 @@ function* countDown() {
   }
 }
 
+
 function* timerProcess() {
   while (true) {
     yield take(START_TIMER);
+    const { remainedTime } = yield select();
     const countDownTask = yield fork(countDown);
-    yield take([STOP_TIMER, RESET_TIMER]);
+    const action = yield take([STOP_TIMER, RESET_TIMER]);
     yield cancel(countDownTask);
+    if (action.type === RESET_TIMER) {
+      yield put(updateTime(remainedTime.minutes, remainedTime.seconds));
+    }
   }
 }
 
