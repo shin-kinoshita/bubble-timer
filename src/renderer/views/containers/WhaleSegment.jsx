@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Whale from '../components/Whale';
+import style from './WhaleSegment.css';
 import { startTimer, stopTimer } from '../../actions';
 import { STOP_MODE } from '../../reducers/mode';
 
@@ -23,7 +24,11 @@ class WhaleSegment extends React.Component {
   render() {
     const { mode } = this.props;
     return (
-      <Whale onPress={mode === STOP_MODE ? this.onPressStart : this.onPressStop}/>
+      <div className={style.whale}>
+        <Whale
+               onPress={mode === STOP_MODE ? this.onPressStart : this.onPressStop}
+        />
+      </div>
     );
   }
 }
