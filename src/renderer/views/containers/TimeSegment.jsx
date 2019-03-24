@@ -1,12 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import TimeText from '../components/TimeText';
 import style from './TimeSegment.css';
 
-class TimeSegment extends React.Component {
+export default class TimeSegment extends React.Component {
   render() {
-    const { mode, remainedTime } = this.props;
     return (
       <div>
         <div className={style.container}>
@@ -21,21 +19,10 @@ class TimeSegment extends React.Component {
             </g>
           </svg>
           <div className={style.timeText}>
-            <TimeText minutes={0} seconds={remainedTime}/>
+            <TimeText/>
           </div>
         </div>
-        {/*<p>current mode: { mode }</p>*/}
-        {/*<p>remained time: { remainedTime }</p>*/}
       </div>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    mode: state.mode,
-    remainedTime: state.remainedTime,
-  };
-};
-
-export default connect(mapStateToProps)(TimeSegment);

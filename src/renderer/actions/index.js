@@ -24,10 +24,13 @@ export const resetTimer = () => {
   }
 };
 
-export const updateTime = (time) => {
+export const updateTime = (minutes, seconds) => {
   return {
     type: UPDATE_TIME,
-    payload: { time },
+    payload: {
+      minutes,
+      seconds,
+    },
   }
 };
 

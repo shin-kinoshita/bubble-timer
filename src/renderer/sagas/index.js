@@ -5,11 +5,15 @@ import { RESET_TIMER, START_TIMER, STOP_TIMER, resetTimer, updateTime } from '..
 function* countDown() {
   while (true) {
     const { remainedTime } = yield select();
-    if (remainedTime <= 0) {
+    if (remainedTime.minutes <= 0 && remainedTime.seconds <= 0) {
       yield put(resetTimer());
       break;
     }
-    yield put(updateTime(remainedTime - 1));
+    if (remainedTime.seconds <= 0) {
+      yield put(updateTime(remainedTime.minutes - 1, 59));
+    } else {
+      yield put(updateTime(remainedTime.minutes, remainedTime.seconds - 1));
+    }
     yield delay(1000);
   }
 }
