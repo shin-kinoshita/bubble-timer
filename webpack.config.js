@@ -18,6 +18,10 @@ const rendererConfig = {
       {
         test: /\.css$/,
         loaders: [ 'style-loader', 'css-loader?modules' ],
+      },
+      {
+        test: /\.(jpeg|png)$/,
+        loaders: 'url-loader',
       }
     ]
   },
