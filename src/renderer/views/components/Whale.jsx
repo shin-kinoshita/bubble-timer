@@ -13,9 +13,11 @@ export default class Whale extends React.Component {
   }
 
   render() {
+    const { direction } = this.props;
     return (
       <div className={style.whale}
-         onClick={this.onPress}
+           style={{transform: `scale(${direction > 0 ? 1 : -1}, 1)`}}
+           onClick={this.onPress}
       />
     );
   }

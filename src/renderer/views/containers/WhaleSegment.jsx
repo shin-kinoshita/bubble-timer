@@ -8,6 +8,8 @@ import { startTimer, stopTimer } from '../../actions';
 import { MEASURING_MODE, STOP_MODE } from '../../reducers/mode';
 
 const step = 10;
+const maxY = 390;
+const minY = 220;
 class WhaleSegment extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class WhaleSegment extends React.Component {
     this.onPressStop = this.onPressStop.bind(this);
     this.state = {
       posX: 30,
-      posY: 40,
+      posY: 220,
       direction: 1,
     }
   }
@@ -29,10 +31,20 @@ class WhaleSegment extends React.Component {
   }
 
   updateDest(posX, posY) {
-    this.setState({
-      posX,
-      posY,
-    });
+    const { direction } = this.state;
+    if ((maxY - posY) * direction > 0 || (minY - posY) * direction > 0) {
+      this.setState({
+        posX,
+        posY,
+        direction,
+      });
+    } else {
+      this.setState({
+        posX,
+        posY,
+        direction: -1 * direction,
+      });
+    }
   }
 
   render() {
@@ -47,7 +59,7 @@ class WhaleSegment extends React.Component {
       >
         {props => (
           <div className={style.whale} style={{bottom: posX + 0 * direction, right: posY + props.rate * dispY}}>
-            <Whale onPress={mode === STOP_MODE ? this.onPressStart : this.onPressStop}/>
+            <Whale direction={direction} onPress={mode === STOP_MODE ? this.onPressStart : this.onPressStop}/>
           </div>
         )}
       </Spring>
