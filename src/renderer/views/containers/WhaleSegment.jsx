@@ -5,7 +5,7 @@ import { Spring } from 'react-spring/renderprops'
 import Whale from '../components/Whale';
 import style from './WhaleSegment.css';
 import { startTimer, stopTimer } from '../../actions';
-import { STOP_MODE } from '../../reducers/mode';
+import { MEASURING_MODE, STOP_MODE } from '../../reducers/mode';
 
 const step = 10;
 class WhaleSegment extends React.Component {
@@ -14,8 +14,8 @@ class WhaleSegment extends React.Component {
     this.onPressStart = this.onPressStart.bind(this);
     this.onPressStop = this.onPressStop.bind(this);
     this.state = {
-      positionX: 30,
-      positionY: 40,
+      posX: 30,
+      posY: 40,
       direction: 1,
     }
   }
@@ -28,22 +28,25 @@ class WhaleSegment extends React.Component {
     this.props.onPressStop();
   }
 
+  updateDest(posX, posY) {
+    this.setState({
+      posX,
+      posY,
+    });
+  }
+
   render() {
     const { mode } = this.props;
-    const { direction, positionX, positionY } = this.state;
+    const { direction, posX, posY } = this.state;
+    const dispY = mode === MEASURING_MODE ? step * direction : 0;
     return (
       <Spring from={{rate: 0}}
               to={{rate: 1}}
               reset={true}
-              onRest={() => {
-                this.setState({
-                  positionX: this.state.positionX,
-                  positionY: this.state.positionY + step,
-                });
-              }}
+              onRest={() => this.updateDest(posX, posY + dispY)}
       >
         {props => (
-          <div className={style.whale} style={{bottom: positionX + 0 * direction, right: positionY + props.rate * step * direction}}>
+          <div className={style.whale} style={{bottom: posX + 0 * direction, right: posY + props.rate * dispY}}>
             <Whale onPress={mode === STOP_MODE ? this.onPressStart : this.onPressStop}/>
           </div>
         )}
