@@ -25,7 +25,7 @@ class TimeText extends React.Component {
   };
 
   onTimeChange(minutes, seconds) {
-    if (!Number(minutes) || !Number(seconds)) {
+    if (Number(minutes) === undefined || Number(seconds) === undefined) {
       return;
     }
     if (minutes.length > 2 || seconds.length > 2) {
