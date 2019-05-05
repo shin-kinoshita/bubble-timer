@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ButtonSegment from '../containers/ButtonSegment';
+import BubbleSegment from '../containers/BubbleSegment';
 import TimeSegment from '../containers/TimeSegment';
 import style from './Main.css';
 import WhaleSegment from '../containers/WhaleSegment';
@@ -15,10 +15,10 @@ export default class Main extends React.Component {
       <div>
         <p>Hurry up!!!</p>
         <WhaleSegment/>
+        <BubbleSegment/>
         <div className={style.timeSegment}>
           <TimeSegment/>
         </div>
-        {/*<ButtonSegment/>*/}
       </div>
     );
   }

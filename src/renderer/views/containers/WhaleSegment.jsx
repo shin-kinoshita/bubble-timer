@@ -4,7 +4,7 @@ import { Spring } from 'react-spring/renderprops'
 
 import Whale from '../components/Whale';
 import style from './WhaleSegment.css';
-import { startTimer, stopTimer } from '../../actions';
+import { generateBubble, startTimer, stopTimer } from '../../actions';
 import { MEASURING_MODE, STOP_MODE } from '../../reducers/mode';
 
 const step = 10;
@@ -77,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onPressStart: () => {
       dispatch(startTimer());
+      dispatch(generateBubble(180, 80));
     },
     onPressStop: () => {
       dispatch(stopTimer());
