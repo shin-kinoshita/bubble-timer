@@ -1,36 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Spring } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring/renderprops'
 
 import Bubble from '../components/Bubble';
 import style from './BubbleSegment.css';
+import { MEASURING_MODE } from '../../reducers/mode';
+import { updateBubble } from '../../actions';
 
-class BubbleSegment extends React.Component {
+
+export default class BubbleSegment extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    console.log('## enter render of BubbleSegment');
-    console.log(this.props);
-    const { bubbles } = this.props;
-    console.log('## bubble');
-    console.log(bubbles);
     return (
       <div>
-        {bubbles.map(bubble =>
-          <div className={style.bubble} style={{bottom: bubble[1], right: bubble[0]}}>
-            <Bubble/>
-          </div>)}
+        {[...Array(5).keys()].map(index => <Bubble index={index}/>)}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    bubbles: state.bubbles,
-  };
-};
-
-export default connect(mapStateToProps)(BubbleSegment);
+// const mapStateToProps = (state) => {
+//   return {
+//     mode: state.mode,
+//     bubbles: state.bubbles,
+//   };
+// };
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     updateBubble: (index, posX, posY) => dispatch(updateBubble(index, posX, posY)),
+//   };
+// };
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(BubbleSegment);

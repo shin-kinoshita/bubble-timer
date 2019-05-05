@@ -4,7 +4,7 @@ import { Spring, animated } from 'react-spring/renderprops'
 
 import Whale from '../components/Whale';
 import style from './WhaleSegment.css';
-import { generateBubble, startTimer, stopTimer } from '../../actions';
+import { startTimer, stopTimer, updateBubble } from '../../actions';
 import { MEASURING_MODE, STOP_MODE } from '../../reducers/mode';
 
 const step = 10;
@@ -23,7 +23,8 @@ class WhaleSegment extends React.Component {
   }
 
   onPressStart() {
-    this.props.onPressStart();
+    const { visibleBubbleCount } = this.props;
+    this.props.onPressStart(visibleBubbleCount);
   }
 
   onPressStop() {
@@ -71,14 +72,15 @@ class WhaleSegment extends React.Component {
 const mapStateToProps = (state) => {
   return {
     mode: state.mode,
+    visibleBubbleCount: state.bubbles.visibleCount,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPressStart: () => {
+    onPressStart: (index) => {
       dispatch(startTimer());
-      dispatch(generateBubble(180, 80));
+      dispatch(updateBubble(index, 180, 80, true));
     },
     onPressStop: () => {
       dispatch(stopTimer());
