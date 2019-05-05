@@ -3,6 +3,8 @@ export const STOP_TIMER = 'STOP_TIMER';
 export const RESET_TIMER = 'RESET_TIMER';
 export const UPDATE_TIME = 'UPDATE_TIME';
 
+export const GENERATE_BUBBLE = 'BUBBLE_GENERATE';
+
 export const startTimer = () => {
   return {
     type: START_TIMER,
@@ -34,3 +36,12 @@ export const updateTime = (minutes, seconds) => {
   }
 };
 
+export const generateBubble = (posX, posY) => {
+  return {
+    type: GENERATE_BUBBLE,
+    payload: {
+      posX,
+      posY,
+    }
+  }
+};
